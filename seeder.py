@@ -1,12 +1,17 @@
+import os
 import sys
 
 import requests
+from dotenv import load_dotenv
 from tqdm import tqdm
 
 from payload_factory import generate_category_payload, generate_business_payload
 
+# --- WCZYTAJ ZMIENNE ŚRODOWISKOWE Z PLIKU .env ---
+load_dotenv()
+
 # --- KONFIGURACJA API ---
-BASE_URL = "http://localhost:8071/core-api"
+BASE_URL = os.getenv("BASE_URL", "http://localhost:8071/core-api")
 
 # --- KONFIGURACJA DANYCH LOGOWANIA ---
 CREDENTIALS = {
@@ -15,15 +20,15 @@ CREDENTIALS = {
         "payload": {
             "firstName": "admin",
             "lastName": "admin",
-            "email": "admin@kalendar.com",
-            "password": "K4fO4co3uln5Iz2"
+            "email": os.getenv("ADMIN_EMAIL"),
+            "password": os.getenv("ADMIN_PASSWORD")
         }
     },
     "BUSINESS": {
         "url": f"{BASE_URL}/auth/business/login",
         "payload": {
-            "email": "Agatka@gmail.com",
-            "password": "!Kretadroga12345"
+            "email": os.getenv("BUSINESS_EMAIL"),
+            "password": os.getenv("BUSINESS_PASSWORD")
         }
     }
 }

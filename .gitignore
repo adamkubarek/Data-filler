@@ -1,0 +1,19 @@
+# Zmienne środowiskowe – NIGDY nie commituj
+.env
+
+# Cache Pythona
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Venv
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
